@@ -10,6 +10,7 @@ SRCS = ft_printf.c\
 		print_char_str.c\
 		extra_fonctions.c\
 		print_int.c\
+		print_ptr.c\
 
 OBJS = ${SRCS:.c=.o}
 

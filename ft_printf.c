@@ -6,7 +6,7 @@
 /*   By: kepouliq <kepouliq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 13:50:17 by kepouliq          #+#    #+#             */
-/*   Updated: 2024/06/04 18:49:51 by kepouliq         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:08:23 by kepouliq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@ static int	check_format(char c, va_list args)
 		return (1);
 	}
 	else if (c == 's')
-	{
 		return (put_str(va_arg(args, char *)));
-	}
 	else if (c == 'd' || c == 'i')
-	{
 		return (put_int(va_arg(args, int)));
-	}
+	else if (c == 'x')
+		return (put_hexabase(va_arg(args, int), "0123456789abcdef"));
+	else if (c == 'X')
+		return (put_hexabase(va_arg(args, int), "0123456789ABCDEF"));
+	else if (c == 'u')
+		return (put_unsigne(va_arg(args, int)));
+	else if (c == 'p')
+		return (put_ptr(va_arg(args, void *)));
 	return (0);
 }
 
@@ -107,3 +111,53 @@ int main()
 	printf("%d\n", printf("%d", test));
 	return (0);
 }*/
+
+//------------------------------------------------------------------------
+/*
+	//TEST POUR %x && %X
+
+int main()
+{
+	long long test = 1;
+	
+	printf("%d\n", ft_printf("%x\n",test));
+	
+	printf("%d\n", printf("%x\n", test));
+
+	printf("%d\n", ft_printf("%X\n",test));
+	
+	printf("%d\n", printf("%X\n", test));
+	return (0);
+}
+*/
+
+//------------------------------------------------------------------------
+/*
+	//TEST POUR %u
+
+int main()
+{
+	int test = INT_MIN;
+	
+	printf("%d\n", ft_printf("%u\n",test));
+	
+	printf("%d\n", printf("%u\n", test));
+	return (0);
+}
+*/
+
+//------------------------------------------------------------------------
+/*
+	//TEST POUR %u
+
+int main()
+{
+	unsigned long nb = LONG_MAX;
+	unsigned long *ptr = &nb;
+	
+	printf("%d\n", ft_printf("%p\n",ptr));
+	
+	printf("%d\n", printf("%p\n", ptr));
+	return (0);
+}
+*/
